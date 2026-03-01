@@ -1,0 +1,29 @@
+services:
+  mysql:
+    image: mysql:latest
+    container_name: elt_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: ClashRoyal
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  jupyter:
+    image: jupyter/datascience-notebook:latest
+    container_name: elt_jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/home/jovyan/work
+      - /c/Users/Utilisateur/Documents/Professionnel/Cours/EPSI/M1/Datamark/TP/Données:/home/jovyan/data:ro
+    environment:
+      JUPYTER_ENABLE_LAB: 'true'
+      GRANT_SUDO: '1'
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_data:
