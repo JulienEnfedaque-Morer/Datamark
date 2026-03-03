@@ -65,25 +65,23 @@ Par **joueur** et par **match**
 - Distribution de l'élixir consommé
 - Cartes les plus performantes par niveau de trophées
 
-## 📊 Modèles de données
+## Modèles de données
 
 ### Modèle Relationnel (3NF)
-Structure normalisée pour les données opérationnelles.
 
-![Modèle Relationnel](images/erd.png)
+![Modèle Relationnel](images/modele_relationel.png)
 
 ### Modèle Dimensionnel (Star Schema)
-Structure optimisée pour l'analyse (Business Intelligence).
 
-![Star Schema](images/star_schema.png)
+![Star Schema](images/schema.png)
 
 **Composition du Star Schema :**
 
-#### 📍 Table de faits
+#### Table de faits
 - **fact_match** : Granularité = 1 ligne par joueur par match
   - Mesures : `crowns`, `trophyChange`, `elixir_average`, `win`
 
-#### 🔷 Dimensions
+#### Dimensions
 - **dim_player** : Informations des joueurs (tag, nom, clan)
 - **dim_time** : Dimension temporelle (année, mois, jour, weekend)
 - **dim_card** : Catalogue des cartes utilisées
