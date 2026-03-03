@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Projet Clash Royale - Entrepôt de données
 
 # Datamark
