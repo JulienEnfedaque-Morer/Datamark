@@ -1,6 +1,11 @@
 <<<<<<< HEAD
 # Projet Clash Royale - Entrepôt de données
 
+# Datamark
+groupe : 
+Emilien Jurkiewicz
+Julien Enfedaque-Morer
+
 ## Jeu de données
 - **Dataset** : [Clash Royale Season 18 Dataset](https://www.kaggle.com/bwandowando/clash-royale-season-18-dec-0320-dataset)
 - **Contenu** : Dizaines de milliers de parties avec statistiques in-game (couronnes, elixir, trophées, cartes jouées)
@@ -59,12 +64,27 @@ Par **joueur** et par **match**
 - Score moyen par période temporelle
 - Distribution de l'élixir consommé
 - Cartes les plus performantes par niveau de trophées
-=======
-# Datamark
 
-groupe : 
-Emilien Jurkiewicz
-Julien Enfedaque-Morer
+## 📊 Modèles de données
 
-Lien vers les données : https://www.kaggle.com/datasets/bwandowando/clash-royale-season-18-dec-0320-dataset?resource=download
->>>>>>> 5a295c754fb0418481af4d003507badc54958cf0
+### Modèle Relationnel (3NF)
+Structure normalisée pour les données opérationnelles.
+
+![Modèle Relationnel](images/erd.png)
+
+### Modèle Dimensionnel (Star Schema)
+Structure optimisée pour l'analyse (Business Intelligence).
+
+![Star Schema](images/star_schema.png)
+
+**Composition du Star Schema :**
+
+#### 📍 Table de faits
+- **fact_match** : Granularité = 1 ligne par joueur par match
+  - Mesures : `crowns`, `trophyChange`, `elixir_average`, `win`
+
+#### 🔷 Dimensions
+- **dim_player** : Informations des joueurs (tag, nom, clan)
+- **dim_time** : Dimension temporelle (année, mois, jour, weekend)
+- **dim_card** : Catalogue des cartes utilisées
+- **bridge_match_card** : Association N:N entre matches et cartes
